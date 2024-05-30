@@ -23,7 +23,7 @@ namespace EFLinqApp
         public Position? Position { get; set; }
         public Company? Company { get; set; }
 
-        public IEnumerable<Project> Projects { get; set; } = new List<Project>();
+        public List<Project> Projects { get; set; } = new List<Project>();
     }
 
     public class Manager : Employee
@@ -41,7 +41,7 @@ namespace EFLinqApp
         public int Id { get; set; }
         public string? Title { get; set; }
 
-        public IEnumerable<Employee> Employees { get; set;} = new List<Employee>();
+        public List<Employee> Employees { get; set;} = new List<Employee>();
     }
 
     public class Project
@@ -50,7 +50,7 @@ namespace EFLinqApp
         public string? Title { get; set; } = null!;
 
         public DateTime? DeadLine { get; set; }
-        public IEnumerable<Employee> Employees { get; set; } = new List<Employee>();
+        public List<Employee> Employees { get; set; } = new List<Employee>();
     }
 
     public class Company
@@ -59,7 +59,7 @@ namespace EFLinqApp
         public string? Title { get; set; }
 
         public Country? Country { get; set; }
-        public IEnumerable<Employee> Employees { get; set; } = new List<Employee>();
+        public List<Employee> Employees { get; set; } = new List<Employee>();
     }
 
     public class Country
@@ -67,6 +67,6 @@ namespace EFLinqApp
         public int Id { get; set; }
         public string? Title { get; set; }
 
-        public IEnumerable<Company> Employees { get; set; } = new List<Company>();
+        public List<Company> Employees { get; set; } = new List<Company>();
     }
 }
