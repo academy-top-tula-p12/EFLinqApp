@@ -40,6 +40,7 @@ namespace EFLinqApp
     {
         public int Id { get; set; }
         public string? Title { get; set; }
+        public bool Activity { get; set; } = true;
 
         public List<Employee> Employees { get; set;} = new List<Employee>();
     }

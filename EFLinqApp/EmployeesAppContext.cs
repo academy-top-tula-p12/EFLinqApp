@@ -17,6 +17,12 @@ namespace EFLinqApp
         public DbSet<Company> Companies { get; set; } = null!;
         public DbSet<Country> Countries { get; set; } = null!;
 
+        public IQueryable<Employee> GetEmployeeById(int id = 1)
+        {
+            return FromExpression(() => GetEmployeeById(id));
+        }
+            
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
@@ -26,6 +32,14 @@ namespace EFLinqApp
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Position>()
+                        .Property(p => p.Activity)
+                        .HasDefaultValue(true);
+
+            modelBuilder.Entity<Position>()
+                        .HasQueryFilter(p => p.Activity);
+
+            modelBuilder.HasDbFunction(() => GetEmployeeById(default));
         }
     }
 }

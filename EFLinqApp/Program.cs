@@ -1,42 +1,37 @@
 ﻿using Azure;
 using EFLinqApp;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-
 
 using (EmployeesAppContext context = new())
 {
-    //var devs = context.Developers;
-    //Console.WriteLine();
-    //foreach (var dev in devs)
-    //    Console.WriteLine($"{dev.Name}");
+    //context.Employees
+    //       .Where(e => e.Company.Title == "Yandex")
+    //       .ExecuteUpdate(e => e.SetProperty(
+    //                                em => em.Salary,
+    //                                em => em.Salary * 1.1m
+    //                               )
+    //                             .SetProperty(
+    //                                em => em.Age,
+    //                                em => em.Age + 1
+    //                             ));
 
-    var devs = context.Employees
-                      .Where(e => e.Company.Country.Title == "Russia");
-    Console.WriteLine();
-    foreach (var dev in devs)
-        Console.WriteLine($"{dev.Name}");
+    //context.Employees
+    //       .Where(e => e.Company.Title == "PiterSoft")
+    //       .ExecuteDelete();
 
-    var emps = context.Employees
-                      .Where(e => e.Age > 40);
-    Console.WriteLine();
-    foreach (var e in emps)
-        Console.WriteLine($"{e.Name}");
+    //SqlParameter paramId = new SqlParameter("@id", 10);
 
-    //var union = context.Employees
-    //                   .Where(e => e.Age > 30)
-    //                   .Union(context.Developers
-    //                                 .Select(d => d as Employee))
-    //                   .Select(u => u as Employee);
+    //var employee = context.Employees
+    //                      .FromSqlRaw("SELECT * FROM [dbo].[GetEmployeeById] (@id)", paramId)
+    //                      .ToList();
+    //foreach(var e in employee)
+    //    Console.WriteLine($"{e.Name} {e.Age} {e.Salary}");
 
-    var union = context.Employees
-                       .Where(e => e.Age > 30)
-                       .Union(context.Employees.Where(e => e.Company.Country.Title == "Russia"));
-
-    Console.WriteLine();
-    foreach (var u in union)
-        Console.WriteLine($"{u.Name}");
-
-
+    var employeeOlly = context.GetEmployeeById(10);
+    foreach (var e in employeeOlly)
+        Console.WriteLine($"{e.Name} {e.Age} {e.Salary}");
 }
+
 
 
